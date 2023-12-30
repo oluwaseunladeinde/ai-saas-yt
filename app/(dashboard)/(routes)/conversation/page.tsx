@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 import { formSchema } from "./constants";
 import { Heading } from "@/components/heading";
 import { Loader } from "@/components/loader";
-import { Empty } from "@/components/ui/empty";
+import { Empty } from "@/components/empty";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 
@@ -41,6 +41,12 @@ const ConversationPage = () => {
         try {
             const userMessage: ChatCompletionRequestMessage = { role: "user", content: values.prompt };
             const newMessages = [...messages, userMessage];
+
+            const response = await axios.post('/api/conversation', { messages: newMessages });
+            setMessages((current) => [...current, userMessage, response.data]);
+
+            form.reset();
+
         } catch (error: any) {
             if (error?.response?.status === 403) {
             } else {
