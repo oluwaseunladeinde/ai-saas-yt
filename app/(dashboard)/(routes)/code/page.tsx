@@ -27,6 +27,7 @@ import { formSchema } from "./constants";
 const CodePage = () => {
 
     const router = useRouter();
+    const proModal = useProModal();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -50,6 +51,7 @@ const CodePage = () => {
 
         } catch (error: any) {
             if (error?.response?.status === 403) {
+                proModal.onOpen();
             } else {
                 toast.error("Something went wrong.");
             }
