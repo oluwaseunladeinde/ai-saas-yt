@@ -18,12 +18,9 @@ export const SubscriptionButton = ({
     const onClick = async () => {
         try {
             setLoading(true);
-
             const response = await axios.get("/api/paystack");
-
             window.location.href = response.data.url;
         } catch (error) {
-            console.log("BILLING ERROR: ", error);
             toast.error("Something went wrong");
         } finally {
             setLoading(false);
