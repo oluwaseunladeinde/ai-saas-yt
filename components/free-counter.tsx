@@ -29,6 +29,10 @@ export const FreeCounter = ({
         return null;
     }
 
+    if (isPro) {
+        return null;
+    }
+
     return (
         <div className="px-3">
             <Card className="bg-white/10 border-0">

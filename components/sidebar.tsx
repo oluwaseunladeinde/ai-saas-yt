@@ -69,10 +69,11 @@ const poppins = Montserrat({
 });
 
 interface SidebarProps {
-    apiLimitCount: number,
+    apiLimitCount: number;
+    isPro: boolean;
 }
 
-export const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
+export const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
 
     const pathname = usePathname();
 
@@ -107,7 +108,7 @@ export const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
             </div>
             <FreeCounter
                 apiLimitCount={apiLimitCount}
-                isPro={false}
+                isPro={isPro}
             />
         </div>
     )
